@@ -104,4 +104,12 @@ class Sbb1ApplicationTests {
 		this.answerRepository.save(a);
 	}
 
+	@Test // 답변 데이터 조회하기
+	void testJpa10() {
+		Optional<Answer> oa = this.answerRepository.findById(1);
+		assertTrue(oa.isPresent());
+		Answer a = oa.get();
+		assertEquals(2, a.getQuestion().getId());
+	}
+
 }
