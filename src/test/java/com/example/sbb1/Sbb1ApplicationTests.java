@@ -81,4 +81,13 @@ class Sbb1ApplicationTests {
 		this.questionRepository.save(q);
 	}
 
+	@Test // 질문 데이터 삭제하기
+	void testJpa8() {
+		assertEquals(2, this.questionRepository.count());
+		Optional<Question> oq = this.questionRepository.findById(1);
+		assertTrue(oq.isPresent());
+		Question q = oq.get();
+		this.questionRepository.delete(q);
+		assertEquals(1, this.questionRepository.count());
+	}
 }
