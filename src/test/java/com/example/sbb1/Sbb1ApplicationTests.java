@@ -1,5 +1,9 @@
 package com.example.sbb1;
 
+import com.example.sbb1.answer.Answer;
+import com.example.sbb1.answer.AnswerRepository;
+import com.example.sbb1.question.Question;
+import com.example.sbb1.question.QuestionRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
