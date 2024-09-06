@@ -1,11 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>안녕하세요 .</h1>
-<div>질문 목록입니다.</div>
-</body>
-</html>
+<table border="1">
+    <thead>
+    <tr>
+        <th> 제목</th>
+        <th> 내용</th>
+        <th> 작성일시</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td> [[${questionList[0].subject}]]</td>
+        <td> [[${questionList[0].content}]]</td>
+        <td> [[${questionList[0].createDate}]]</td>
+    </tr>
+    </tbody>
+</table>
