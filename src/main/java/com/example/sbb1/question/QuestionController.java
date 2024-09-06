@@ -28,9 +28,4 @@ public class QuestionController {
         return "question_detail";
     }
 
-    @PostMapping("/create")
-    @ResponseBody
-    public String createQuestion () {
-        return "전송완료";
-    }
 }

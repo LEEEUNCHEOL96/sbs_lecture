@@ -1,8 +1,7 @@
 <h1>[[${question.subject}]]</h1>
 <div>[[${question.content}]]</div>
 
-<form action="/question/create" method="post">
-    <input type="text" name="temp">
-    <textarea name="content" id="" cols="30" rows="10"></textarea>
-    <button type="submit">전송</button>
+<form th:action="@{|/answer/create/${question.id}|}" method="post">
+    <textarea name="content" id="content" rows="15"></textarea>
+    <input type="submit" value="답변등록">
 </form>
