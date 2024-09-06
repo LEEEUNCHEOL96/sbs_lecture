@@ -8,9 +8,9 @@
     </thead>
     <tbody>
     <tr>
-        <td> [[${questionList[0].subject}]]</td>
-        <td> [[${questionList[0].content}]]</td>
-        <td> [[${questionList[0].createDate}]]</td>
+        <td th:text = "${questionList[0].subject}"></td>
+        <td th:text = "${questionList[0].content}"></td>
+        <td th:text ="${questionList[0].createDate}"></td>
     </tr>
     </tbody>
 </table>
