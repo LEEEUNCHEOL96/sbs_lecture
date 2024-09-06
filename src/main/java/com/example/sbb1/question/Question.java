@@ -14,7 +14,7 @@ import java.util.List;
 @Entity
 public class Question {
     @Id // 질문의 고유 번호
-    @GeneratedValue (strategy = GenerationType.IDENTITY) //auto_increment
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //auto_increment
     private Integer id;
 
     @Column(length = 200)  // 질문의 제목 길이는 200

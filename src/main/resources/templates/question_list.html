@@ -6,12 +6,11 @@
         <th> 작성일시</th>
     </tr>
     </thead>
-    <tbody style ="background-color : #A9F5F2;">
-    <tr th:each = "question : ${questionList}">
-        <td th:text = "${question.subject}"></td>
-        <td th:text = "${question.content}"></td>
-        <td th:text = "${question.createDate}"></td>
+    <tbody style="background-color : #A9F5F2;">
+    <tr th:each="question : ${questionList}">
+        <td th:text="${question.subject}"></td>
+        <td th:text="${question.content}"></td>
+        <td th:text="${question.createDate}"></td>
     </tr>
-
     </tbody>
 </table>
