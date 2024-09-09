@@ -19,17 +19,17 @@ public class AnswerController {
     private final AnswerService answerService;
 
     @PostMapping("/create/{id}")
-    public String createAnswer (Model model, @PathVariable("id") Integer id,
-                                @Valid AnswerForm answerForm, BindingResult bindingResult){
+    public String createAnswer(Model model, @PathVariable("id") Integer id,
+                               @Valid AnswerForm answerForm, BindingResult bindingResult) {
 
         Question question = this.questionService.getQuestion(id);
 
-        if(bindingResult.hasErrors()){
-            model.addAttribute("question",question);
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("question", question);
             return "question_detail";
         }
 
-        this.answerService.create(question,answerForm.getContent());
+        this.answerService.create(question, answerForm.getContent());
         return String.format("redirect:/question/detail/%s", id);
     }
 
