@@ -36,7 +36,7 @@ public class QuestionController {
     @PostMapping("/create")
     public String create(@RequestParam("subject") String subject,
                          @RequestParam("content") String content) {
-        // TODO: 질문등록
+        this.questionService.create(subject,content);
         return "redirect:/question/list";
     }
 }
