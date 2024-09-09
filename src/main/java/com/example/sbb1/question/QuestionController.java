@@ -28,4 +28,15 @@ public class QuestionController {
         return "question_detail";
     }
 
+    @GetMapping("/create")
+    public String create() {
+        return "question_form";
+    }
+
+    @PostMapping("/create")
+    public String create(@RequestParam("subject") String subject,
+                         @RequestParam("content") String content) {
+        // TODO: 질문등록
+        return "redirect:/question/list";
+    }
 }
