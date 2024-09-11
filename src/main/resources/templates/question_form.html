@@ -1,5 +1,6 @@
 <html layout:decorate="~{layout}">
 <div class="container" layout:fragment="content">
+
     <h5 class="my-3 border-bottom pb-2">질문등록</h5>
     <form method="post" th:action="@{/question/create}" th:object="${questionForm}">
         <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
