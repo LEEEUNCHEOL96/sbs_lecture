@@ -4,6 +4,7 @@ import com.example.sbb1.answer.Answer;
 import com.example.sbb1.answer.AnswerRepository;
 import com.example.sbb1.question.Question;
 import com.example.sbb1.question.QuestionRepository;
+import com.example.sbb1.question.QuestionService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,6 +25,9 @@ class Sbb1ApplicationTests {
 
     @Autowired // 의존성 주입
     private AnswerRepository answerRepository;
+
+    @Autowired
+    private QuestionService questionService;
 
     @Test
         // 질문 데이터 저장하기
@@ -141,5 +145,14 @@ class Sbb1ApplicationTests {
 
         assertEquals(1, answerList.size());
         assertEquals("네 자동으로 생성됩니다.", answerList.get(0).getContent());
+    }
+
+    @Test
+    void testJpa12(){
+        for (int i = 1; i <= 100 ; i++){
+            String subject = String.format("테스트 데이터입니다[%03d]",i);
+            String content = "내용무";
+            this.questionService.create(subject,content);
+        }
     }
 }
