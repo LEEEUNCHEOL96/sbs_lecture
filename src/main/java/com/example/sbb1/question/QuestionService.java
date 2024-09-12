@@ -38,7 +38,6 @@ public class QuestionService {
         q.setContent(content);
         q.setCreateDate(LocalDateTime.now());
 
-
         this.questionRepository.save(q);
 
     }
