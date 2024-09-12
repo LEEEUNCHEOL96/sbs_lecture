@@ -5,6 +5,7 @@ import com.example.sbb1.answer.AnswerRepository;
 import com.example.sbb1.question.Question;
 import com.example.sbb1.question.QuestionRepository;
 import com.example.sbb1.question.QuestionService;
+import com.example.sbb1.user.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,6 +29,9 @@ class Sbb1ApplicationTests {
 
     @Autowired
     private QuestionService questionService;
+
+    @Autowired
+    UserService userService;
 
     @Test
         // 질문 데이터 저장하기
@@ -154,5 +158,10 @@ class Sbb1ApplicationTests {
             String content = "내용무";
             this.questionService.create(subject,content);
         }
+    }
+
+    @Test
+    void testJpa13(){
+        userService.create("test","test1@test.com", "1234");
     }
 }
