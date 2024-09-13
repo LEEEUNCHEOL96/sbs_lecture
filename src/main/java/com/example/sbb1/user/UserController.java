@@ -16,7 +16,7 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/signup")
-    public String signup(){
+    public String signup(UserCreateForm userCreateForm){
         return "signup_form";
     }
 
@@ -25,7 +25,13 @@ public class UserController {
         if(bindingResult.hasErrors()){
             return "signup_form";
         }
-        // TODO: 패스워드 일치 여부 검증
+        //패스워드 일치 여부 검증
+        if (!userCreateForm.getPassword1().equals(userCreateForm.getPassword2())) {
+            bindingResult.rejectValue("password2", "passwordInCorrect","2개의 패스워드가 일치하지 않습니다.");
+
+            return "signup_form";
+        }
+
 
         // TODO: 회원가입 처리
 
