@@ -25,7 +25,12 @@ public class SecurityConfig {
                 .headers((headers) -> headers
                         .addHeaderWriter(new XFrameOptionsHeaderWriter(
                                 XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN)))
-        ; //h2 콘솔 사용시 해킹방지 시큐리티기본 설정 해지 하는 라인
+                        //h2 콘솔 사용시 해킹방지 시큐리티기본 설정 해지 하는 라인
+                .formLogin((formLogin) -> formLogin
+                        .loginPage("/user/login")
+                        .defaultSuccessUrl("/"))
+
+        ;
 
         return http.build();
     }
