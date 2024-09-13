@@ -23,6 +23,7 @@ public class UserController {
     @PostMapping("/signup")
     public String signup(@Valid UserCreateForm userCreateForm, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
+
             return "signup_form";
         }
         //패스워드 일치 여부 검증
@@ -32,10 +33,9 @@ public class UserController {
             return "signup_form";
         }
 
-
-        // TODO: 회원가입 처리
-
-
+        // 회원가입 처리
+        userService.create(userCreateForm.getUsername(),
+                userCreateForm.getEmail(), userCreateForm.getPassword1());
 
         return "redirect:/";
     }
