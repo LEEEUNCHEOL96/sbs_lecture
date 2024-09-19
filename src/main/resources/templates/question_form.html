@@ -2,7 +2,8 @@
 <div class="container" layout:fragment="content">
 
     <h5 class="my-3 border-bottom pb-2">질문등록</h5>
-    <form method="post" th:action="@{/question/create}" th:object="${questionForm}">
+    <form method="post" th:object="${questionForm}">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
             <div th:replace="~{form_errors :: formErrorsFragment}"></div>
         </div>
