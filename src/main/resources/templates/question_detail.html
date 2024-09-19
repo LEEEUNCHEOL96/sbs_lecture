@@ -32,7 +32,8 @@
         <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
             <div th:replace="~{form_errors :: formErrorsFragment}"></div>
         </div>
-        <textarea class="form-control" rows="10" th:field="*{content}"></textarea>
+        <textarea sec:authorize="isAnonymous()" class="form-control" rows="10" disabled th:field="*{content}"></textarea>
+        <textarea sec:authorize="isAuthenticated()" class="form-control" rows="10" th:field="*{content}"></textarea>
         <input class="btn btn-primary my-2" type="submit" value="답변등록">
     </form>
 </div>
