@@ -23,7 +23,7 @@ public class Answer {
     private SiteUser author;
 
     private LocalDateTime createDate; // 답변의 작성 일시
-
+    private LocalDateTime modifyDate; // 답변의 수정 일시
 
     @ManyToOne // N : 1 관계
     private Question question;

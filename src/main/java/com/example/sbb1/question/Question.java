@@ -28,6 +28,7 @@ public class Question {
     private SiteUser author;
 
     private LocalDateTime createDate; // 질문의 작성 일시
+    private LocalDateTime modifyDate; // 질문의 수정 일시
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE) // JPA 특성 : 질문 => 자식 질문
     private List<Answer> answerList;
