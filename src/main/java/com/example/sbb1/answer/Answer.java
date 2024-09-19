@@ -1,6 +1,7 @@
 package com.example.sbb1.answer;
 
 import com.example.sbb1.question.Question;
+import com.example.sbb1.user.SiteUser;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +18,9 @@ public class Answer {
 
     @Column(columnDefinition = "TEXT")  // 답변의 내용은 TEXT 형태의 길이제한 없음
     private String content;
+
+    @ManyToOne
+    private SiteUser author;
 
     private LocalDateTime createDate; // 답변의 작성 일시
 

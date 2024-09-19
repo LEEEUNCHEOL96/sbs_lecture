@@ -2,6 +2,7 @@ package com.example.sbb1.question;
 
 
 import com.example.sbb1.answer.Answer;
+import com.example.sbb1.user.SiteUser;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,6 +23,9 @@ public class Question {
 
     @Column(columnDefinition = "TEXT") // 질문의 내용은 TEXT 형태의 길이제한 없음
     private String content;
+
+    @ManyToOne
+    private SiteUser author;
 
     private LocalDateTime createDate; // 질문의 작성 일시
 
