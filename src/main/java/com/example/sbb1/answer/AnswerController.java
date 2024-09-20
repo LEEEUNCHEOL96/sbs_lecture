@@ -90,7 +90,7 @@ public class AnswerController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/vote/{id}")
-    public String answerVote(@PathVariable("id") Integer id,Principal principal){
+    public String answerVote(@PathVariable("id") Integer id, Principal principal) {
         Answer answer = this.answerService.getAnswer(id);
         SiteUser siteUser = this.userService.getUser(principal.getName());
 

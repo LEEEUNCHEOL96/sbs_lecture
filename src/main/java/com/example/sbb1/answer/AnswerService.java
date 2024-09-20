@@ -25,19 +25,19 @@ public class AnswerService {
         this.answerRepository.save(answer);
         return answer;
     }
+
     // 답변수정 찾기 기능
-    public Answer getAnswer(Integer id){
+    public Answer getAnswer(Integer id) {
         Optional<Answer> optionalAnswer = this.answerRepository.findById(id);
-        if(optionalAnswer.isPresent()){
+        if (optionalAnswer.isPresent()) {
             return optionalAnswer.get();
-        }
-        else {
+        } else {
             throw new DataNotFoundException("answer not found");
         }
     }
 
     // 답변수정 저장 기능
-    public void modify(Answer answer, String content){
+    public void modify(Answer answer, String content) {
         answer.setContent(content);
         answer.setModifyDate(LocalDateTime.now());
         this.answerRepository.save(answer);

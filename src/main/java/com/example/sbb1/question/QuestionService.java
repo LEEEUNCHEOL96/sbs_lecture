@@ -76,7 +76,7 @@ public class QuestionService {
         this.questionRepository.delete(question);
     }
 
-    public void vote(Question question,SiteUser siteUser){
+    public void vote(Question question, SiteUser siteUser) {
         question.getVoter().add(siteUser);
         this.questionRepository.save(question);
     }
@@ -84,6 +84,7 @@ public class QuestionService {
     private Specification<Question> search(String kw) {
         return new Specification<>() {
             private static final long serialVersionUID = 1L;
+
             @Override
             public Predicate toPredicate(Root<Question> q, CriteriaQuery<?> query, CriteriaBuilder cb) {
                 query.distinct(true);  // 중복을 제거

@@ -24,10 +24,10 @@ public class QuestionController {
     private final UserService userService;
 
     @GetMapping("/list")
-    public String list(Model model, @RequestParam(value = "page",defaultValue = "0") int page,
+    public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page,
                        @RequestParam(value = "kw", defaultValue = "") String kw) {
 
-        Page<Question> paging = this.questionService.getList(page,kw);
+        Page<Question> paging = this.questionService.getList(page, kw);
         model.addAttribute("paging", paging);
         model.addAttribute("kw", kw);
 
@@ -63,10 +63,10 @@ public class QuestionController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/modify/{id}")
-    public String questionModify(QuestionForm questionForm,@PathVariable("id") Integer id, Principal principal){
+    public String questionModify(QuestionForm questionForm, @PathVariable("id") Integer id, Principal principal) {
         Question question = this.questionService.getQuestion(id);
 
-        if(!question.getAuthor().getUsername().equals(principal.getName())){
+        if (!question.getAuthor().getUsername().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
         }
 
@@ -79,7 +79,7 @@ public class QuestionController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/modify/{id}")
     public String questionModify(@Valid QuestionForm questionForm, BindingResult bindingResult,
-                                 @PathVariable("id") Integer id, Principal principal){
+                                 @PathVariable("id") Integer id, Principal principal) {
         if (bindingResult.hasErrors()) {
             return "question_form";
         }
@@ -109,11 +109,11 @@ public class QuestionController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/vote/{id}")
-    public String questionVote(@PathVariable("id") Integer id, Principal principal){
+    public String questionVote(@PathVariable("id") Integer id, Principal principal) {
         Question question = this.questionService.getQuestion(id);
         SiteUser siteUser = this.userService.getUser(principal.getName());
 
-        this.questionService.vote(question,siteUser);
+        this.questionService.vote(question, siteUser);
 
         return String.format("redirect:/question/detail/%s", id);
     }
