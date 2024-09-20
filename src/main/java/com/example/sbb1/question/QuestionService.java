@@ -47,13 +47,23 @@ public class QuestionService {
 
     }
 
+/*  // Specification 인터페이스 사용 문법
     public Page<Question> getList(int page,String kw) {
         List<Sort.Order> sorts = new ArrayList<>();
         sorts.add(Sort.Order.desc("createDate"));
         Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
         Specification<Question> spec = search(kw);
         return this.questionRepository.findAll(spec, pageable);
+    }*/
+
+    //쿼리 어노테이션 사용 문법
+    public Page<Question> getList(int page, String kw) {
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.desc("createDate"));
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
+        return this.questionRepository.findAllByKeyword(kw, pageable);
     }
+
 
     public void modify(Question question, String subject, String content) {
         question.setSubject(subject);
