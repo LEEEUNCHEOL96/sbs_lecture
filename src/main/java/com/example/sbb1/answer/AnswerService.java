@@ -36,8 +36,8 @@ public class AnswerService {
     }
 
     // 답변수정 저장 기능
-    public void modify(Answer answer, String contenet){
-        answer.setContent(contenet);
+    public void modify(Answer answer, String content){
+        answer.setContent(content);
         answer.setModifyDate(LocalDateTime.now());
         this.answerRepository.save(answer);
     }
