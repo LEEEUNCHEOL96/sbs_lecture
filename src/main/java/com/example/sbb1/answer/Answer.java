@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -27,4 +28,7 @@ public class Answer {
 
     @ManyToOne // N : 1 관계
     private Question question;
+
+    @ManyToMany  // 좋아요 기능
+    Set<SiteUser> voter;
 }

@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -33,4 +34,6 @@ public class Question {
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE) // JPA 특성 : 질문 => 자식 질문
     private List<Answer> answerList;
 
+    @ManyToMany // 좋아요 기능
+    Set<SiteUser> voter;
 }
