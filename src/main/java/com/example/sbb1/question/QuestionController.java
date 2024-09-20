@@ -23,6 +23,7 @@ public class QuestionController {
     private final QuestionService questionService;
     private final UserService userService;
 
+    // 질문 리스트 컨트롤러
     @GetMapping("/list")
     public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page,
                        @RequestParam(value = "kw", defaultValue = "") String kw) {
@@ -34,6 +35,7 @@ public class QuestionController {
         return "question_list";
     }
 
+    // 질문 상세 페이지 컨트롤러
     @GetMapping("detail/{id}")
     public String getQuestion(Model model, @PathVariable("id") Integer id, AnswerForm answerForm) {
         Question question = this.questionService.getQuestion(id);
@@ -41,12 +43,14 @@ public class QuestionController {
         return "question_detail";
     }
 
+    // 질문 생성 컨트롤러 겟맵핑
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/create")
     public String create(QuestionForm questionForm) {
         return "question_form";
     }
 
+    // 질문 생성 컨트롤러 포스트맵핑
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/create")
     public String create(@Valid QuestionForm questionForm,
@@ -61,6 +65,7 @@ public class QuestionController {
         return "redirect:/question/list";
     }
 
+    // 질문 수정 컨트롤러 겟맵핑
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/modify/{id}")
     public String questionModify(QuestionForm questionForm, @PathVariable("id") Integer id, Principal principal) {
@@ -76,6 +81,7 @@ public class QuestionController {
         return "question_form";
     }
 
+    // 질문 수정 컨트롤러 포스트맵핑
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/modify/{id}")
     public String questionModify(@Valid QuestionForm questionForm, BindingResult bindingResult,
@@ -94,6 +100,7 @@ public class QuestionController {
         return String.format("redirect:/question/detail/%s", id);
     }
 
+    // 질문 삭제 컨트롤러
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/delete/{id}")
     public String questionDelete(Principal principal, @PathVariable("id") Integer id) {
@@ -107,6 +114,7 @@ public class QuestionController {
         return "redirect:/";
     }
 
+    // 질문 좋아요 컨트롤러
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/vote/{id}")
     public String questionVote(@PathVariable("id") Integer id, Principal principal) {

@@ -23,10 +23,12 @@ import java.util.Optional;
 public class QuestionService {
     private final QuestionRepository questionRepository;
 
+    // 질문 찾기 기능
     public List<Question> getList() {
         return this.questionRepository.findAll();
     }
 
+    // 질문 찾기 상세페이지 기능
     public Question getQuestion(Integer id) {
         Optional<Question> oq = this.questionRepository.findById(id);
         if (oq.isPresent()) {
@@ -36,6 +38,7 @@ public class QuestionService {
         }
     }
 
+    // 질문 생성 기능
     public void create(String subject, String content, SiteUser user) {
         Question q = new Question();
         q.setSubject(subject);
@@ -64,7 +67,7 @@ public class QuestionService {
         return this.questionRepository.findAllByKeyword(kw, pageable);
     }
 
-
+    // 질문 수정 기능
     public void modify(Question question, String subject, String content) {
         question.setSubject(subject);
         question.setContent(content);
@@ -72,15 +75,18 @@ public class QuestionService {
         this.questionRepository.save(question);
     }
 
+    // 질문 삭제 기능
     public void delete(Question question) {
         this.questionRepository.delete(question);
     }
 
+    // 질문 좋아요 기능
     public void vote(Question question, SiteUser siteUser) {
         question.getVoter().add(siteUser);
         this.questionRepository.save(question);
     }
 
+    // 검색 기능
     private Specification<Question> search(String kw) {
         return new Specification<>() {
             private static final long serialVersionUID = 1L;

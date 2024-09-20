@@ -26,7 +26,7 @@ public class AnswerService {
         return answer;
     }
 
-    // 답변수정 찾기 기능
+    // 답변 수정 찾기 기능
     public Answer getAnswer(Integer id) {
         Optional<Answer> optionalAnswer = this.answerRepository.findById(id);
         if (optionalAnswer.isPresent()) {
@@ -36,18 +36,19 @@ public class AnswerService {
         }
     }
 
-    // 답변수정 저장 기능
+    // 답변 수정 저장 기능
     public void modify(Answer answer, String content) {
         answer.setContent(content);
         answer.setModifyDate(LocalDateTime.now());
         this.answerRepository.save(answer);
     }
 
-    // 답변삭제 기능
+    // 답변 삭제 기능
     public void delete(Answer answer) {
         this.answerRepository.delete(answer);
     }
 
+    // 답변 좋아요 기능
     public void vote(Answer answer, SiteUser siteUser) {
         answer.getVoter().add(siteUser);
         this.answerRepository.save(answer);
