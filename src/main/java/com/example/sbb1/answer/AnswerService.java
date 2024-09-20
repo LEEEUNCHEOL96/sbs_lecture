@@ -41,4 +41,9 @@ public class AnswerService {
         answer.setModifyDate(LocalDateTime.now());
         this.answerRepository.save(answer);
     }
+
+    // 답변삭제 기능
+    public void delete(Answer answer) {
+        this.answerRepository.delete(answer);
+    }
 }
