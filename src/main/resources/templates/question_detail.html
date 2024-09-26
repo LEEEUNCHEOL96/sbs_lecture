@@ -18,10 +18,13 @@
                 </div>
             </div>
             <div class="my-3">
-                <a th:href="@{|/question/vote/${question.id}|}" class="recommend btn btn-sm btn-outline-secondary"
+                <a id="question_recommend"
+                   class="recommend btn btn-sm btn-outline-secondary"
                    onclick="return confirm('정말 추천하시겠습니까?')">
                     추천
-                    <span class="badge rounded-pill bg-success" th:text="${#lists.size(question.voter)}"></span>
+                    <span id="question_recommend_count"
+                          class="badge rounded-pill bg-success"
+                          th:text="${#lists.size(question.voter)}"></span>
                 </a>
                 <a th:href="@{|/question/modify/${question.id}|}" class="btn btn-sm btn-outline-secondary"
                    sec:authorize="isAuthenticated()"
@@ -87,3 +90,23 @@
     </form>
 </div>
 </html>
+
+<script th:inline="javascript">
+    var question_id = [[${question.id}]]
+
+    $("#question_recommend").on("click", function() {
+        $.ajax({
+            url: "/question/vote/" + question_id,
+            type: "GET",
+            success: function(response) {
+                // 요청이 성공했을 때 실행되는 콜백 함수
+                console.log("성공", response);
+                $("#question_recommend_count").text(response);
+            },
+            error: function(xhr, status, error) {
+                // 요청이 실패했을 때 실행되는 콜백 함수
+                console.log("오류 발생", error);
+            }
+        });
+    });
+</script>

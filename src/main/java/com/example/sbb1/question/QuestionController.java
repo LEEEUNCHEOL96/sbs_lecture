@@ -115,6 +115,7 @@ public class QuestionController {
     }
 
     // 질문 좋아요 컨트롤러
+/*
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/vote/{id}")
     public String questionVote(@PathVariable("id") Integer id, Principal principal) {
@@ -124,5 +125,20 @@ public class QuestionController {
         this.questionService.vote(question, siteUser);
 
         return String.format("redirect:/question/detail/%s", id);
+    }
+*/
+    // ajax를 통한 추천
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/vote/{id}")
+    @ResponseBody
+    public String questionVote(@PathVariable("id") Integer id, Principal principal) {
+        Question question = this.questionService.getQuestion(id);
+        SiteUser siteUser = this.userService.getUser(principal.getName());
+        this.questionService.vote(question, siteUser);
+
+        Question votedQuestion = this.questionService.getQuestion(id);
+        Integer count = votedQuestion.getVoter().size();
+
+        return count.toString();
     }
 }
