@@ -114,7 +114,7 @@ public class QuestionController {
         return "redirect:/";
     }
 
-    // 질문 좋아요 컨트롤러
+    // 질문 질문 컨트롤러
 /*
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/vote/{id}")
@@ -127,7 +127,7 @@ public class QuestionController {
         return String.format("redirect:/question/detail/%s", id);
     }
 */
-    // ajax를 통한 추천
+    // ajax를 통한 질문 추천
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/vote/{id}")
     @ResponseBody

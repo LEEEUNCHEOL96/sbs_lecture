@@ -88,7 +88,7 @@ public class AnswerController {
         return String.format("redirect:/question/detail/%s", answer.getQuestion().getId());
     }
 
-/*    // 답변 좋아요 컨트롤러
+/*    // 답변 추천 컨트롤러
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/vote/{id}")
     public String answerVote(@PathVariable("id") Integer id, Principal principal) {
@@ -101,7 +101,7 @@ public class AnswerController {
                 answer.getQuestion().getId(), answer.getId());
     }*/
 
-
+    // ajax를 통한 답변 추천
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/vote/{id}")
     @ResponseBody
