@@ -110,10 +110,9 @@ public class AnswerController {
         SiteUser siteUser = this.userService.getUser(principal.getName());
         this.answerService.vote(answer, siteUser);
 
-        Answer votedAnswer= this.answerService.getAnswer(id);
+        Answer votedAnswer = this.answerService.getAnswer(id);
         Integer count = votedAnswer.getVoter().size();
 
-        return  count.toString();
+        return count.toString();
     }
-
 }
